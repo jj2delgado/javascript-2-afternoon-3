@@ -124,10 +124,11 @@ contains(names, 'Colt', function(result){
 
 //Code Here
 function uniq(arr, cb){
-  let uniqArray = []
   for(let i = 0; i < arr.length; i++){
-    if (uniqArray.indexOf(arr[i]) == -1){
-        uniqArray.push(arr[i])
+    for(let j = i + 1; j < arr.length; j++){
+      if(arr[i] === arr[j]){
+        arr.splice(j, 1)
+      }
     }
   }
   cb(arr)
@@ -150,6 +151,12 @@ uniq(names, function(uniqArr){
 
 //Code Here 
 
+function each(names, cb){
+  for (let i = 0; i < names.length; i++){
+    cb(names[i], 1)
+  }
+  return names
+}
 // Do not edit the code below.
 each(names, function(item, indice){
   console.log('The item in the ' + indice + ' position is ' + item)
@@ -166,6 +173,14 @@ each(names, function(item, indice){
 */
 
 // Code here
+
+function getUserById(users, id, cb){
+  for(let i = 0; i < users.length; i++){
+    if(id === users[i].id){
+      return cb(users[i])
+    }
+  }
+}
 
 // Do not edit the code below.
 var users = [
